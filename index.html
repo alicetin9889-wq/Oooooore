@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İkra</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f8f8f8;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#111;
+transition:1s;
+}
+
+.bgText{
+position:absolute;
+font-size:22px;
+opacity:0.06;
+animation:float 12s linear infinite;
+white-space:nowrap;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
+.card{
+width:90%;
+max-width:430px;
+padding:28px;
+border-radius:30px;
+background:rgba(255,255,255,0.75);
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(0,0,0,0.08);
+text-align:center;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0px);
+}
+}
+
+.title{
+font-size:38px;
+font-weight:bold;
+}
+
+.text{
+margin-top:20px;
+font-size:19px;
+line-height:34px;
+}
+
+button{
+margin-top:25px;
+padding:14px 24px;
+border:none;
+border-radius:20px;
+background:#111;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+img{
+width:240px;
+border-radius:22px;
+margin-top:18px;
+box-shadow:0 0 18px rgba(0,0,0,0.15);
+animation:imgmove 4s infinite alternate;
+}
+
+@keyframes imgmove{
+0%{
+transform:translateY(0px) rotate(-1deg);
+}
+100%{
+transform:translateY(-8px) rotate(1deg);
+}
+}
+
+.message{
+background:#ececec;
+padding:14px;
+border-radius:18px;
+margin-top:12px;
+text-align:left;
+animation:fade 0.5s;
+}
+
+.dark{
+background:#141414;
+color:white;
+}
+
+.dark .card{
+background:rgba(255,255,255,0.08);
+box-shadow:0 0 30px rgba(255,255,255,0.08);
+}
+
+.dark button{
+background:white;
+color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bgText" style="left:10%;">ikos</div>
+<div class="bgText" style="left:30%;animation-delay:2s;">leclerc</div>
+<div class="bgText" style="left:50%;animation-delay:4s;">hot wheels</div>
+<div class="bgText" style="left:70%;animation-delay:1s;">alim</div>
+<div class="bgText" style="left:85%;animation-delay:6s;">iyi ki doğdun</div>
+
+<div class="card">
+
+<div id="content">
+
+<div class="title">
+İkra için küçük bir şey
+</div>
+
+<div class="text">
+
+Tamam kabul ediyorum biraz uğraştım.
+
+</div>
+
+<button onclick="scene1()">
+
+başlat
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function scene1(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Mesajlar
+</div>
+
+<div class="message">
+Ali: sen aşırı sinir bozucusun bu arada
+</div>
+
+<div class="message">
+İkra: biliyorum
+</div>
+
+<div class="message">
+Ali: ama yine de konuşuyorum
+</div>
+
+<div class="text">
+
+Garip.
+
+</div>
+
+<button onclick="scene2()">
+
+devam et
+
+</button>
+
+`;
+
+}
+
+function scene2(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Mini Test
+</div>
+
+<div class="text">
+
+Ali'nin en sevmediği şey ne?
+
+</div>
+
+<button onclick="scene3()">
+
+İkra'nın trip atması
+
+</button>
+
+<br>
+
+<button onclick="wrong()">
+
+Senin çok konuşman
+
+</button>
+
+`;
+
+}
+
+function wrong(){
+
+alert("Bu kadar da değil");
+
+}
+
+function scene3(){
+
+document.body.style.background="#ffffff";
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Senin Yüzünden
+</div>
+
+<div class="text" id="typing">
+
+</div>
+
+<button onclick="scene4()" id="nextBtn" style="display:none;">
+
+tamam bu iyiydi
+
+</button>
+
+`;
+
+let text = `
+Milletin arkadaşı insanı sigaraya, kumara alıştırır.<br><br>
+
+Sen bana Hot Wheels sevdirdin.<br><br>
+
+F1 öğrettin.<br><br>
+
+Clash of Clans konuşturttun.<br><br>
+
+Şimdi Leclerc görünce aklıma direkt sen geliyorsun.<br><br>
+
+Bazı insanlar kötü alışkanlık bırakır derler ya...<br><br>
+
+Sen bana güzel şeyler bıraktın İkra.
+`;
+
+let i = 0;
+
+function type(){
+
+if(i < text.length){
+
+document.getElementById("typing").innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(type,35);
+
+}else{
+
+document.getElementById("nextBtn").style.display="inline-block";
+
+}
+
+}
+
+type();
+
+}
+
+function scene4(){
+
+document.body.classList.add("dark");
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Yeni Hobiler
+</div>
+
+<img src="Leclerc.jpg">
+
+<div class="text">
+
+Senin yüzünden bunu tanıyorum artık.
+
+</div>
+
+<button onclick="scene5()">
+
+devam
+
+</button>
+
+`;
+
+}
+
+function scene5(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Trip Sonrası Ben
+</div>
+
+<img src="jack.jpg">
+
+<div class="text">
+
+Trip yedikten sonraki ben.
+
+</div>
+
+<button onclick="scene6()">
+
+tamam sıradaki
+
+</button>
+
+`;
+
+}
+
+function scene6(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Jack & Kate
+</div>
+
+<img src="jackkate.jpg">
+
+<div class="text">
+
+Lost senaryosu gibi ilişki yönetiyorsunuz.
+
+</div>
+
+<button onclick="scene7()">
+
+devam et
+
+</button>
+
+`;
+
+}
+
+function scene7(){
+
+document.body.style.background="#f8f8f8";
+document.body.classList.remove("dark");
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Küçük Anılar
+</div>
+
+<div class="text">
+
+Gece konuşmaları.<br><br>
+
+Random tartışmalar.<br><br>
+
+Seni kızdırmaların.<br><br>
+
+Saçma mesajlar.<br><br>
+
+Ve istemeden alışkanlık oluşun.
+
+</div>
+
+<button onclick="scene8()">
+
+devam
+
+</button>
+
+`;
+
+}
+
+function scene8(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+Bazı İlkler
+</div>
+
+<div class="text">
+
+Bazı ilk hisleri seninle yaşadım.<br><br>
+
+Birinin mesajını beklemeyi.<br><br>
+
+Birisiyle bu kadar uzun konuşmayı.<br><br>
+
+Saçma şeyleri önemsemeyi.<br><br>
+
+Garip ama güzelmiş.
+
+</div>
+
+<button onclick="finalScene()">
+
+son bir şey
+
+</button>
+
+`;
+
+}
+
+function finalScene(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="title">
+
+Hayatıma fazla alıştın sanırım İkra.
+
+</div>
+
+<div class="text">
+
+İyi ki doğdun.
+
+</div>
+
+<div style="
+margin-top:35px;
+font-size:22px;
+opacity:0.7;
+">
+
+— Ali
+
+</div>
+
+`;
+
+}
+
+</script>
+
+</body>
+  </html>
